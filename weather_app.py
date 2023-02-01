@@ -18,5 +18,4 @@ def get_weather(location):
         weather_data = response.json()
         return weather_data
     except requests.exceptions.RequestException as e:
-        #return None
-        return {"error": "Sorry, no data available at this time"}
+        return None
