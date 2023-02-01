@@ -21,3 +21,9 @@ if __name__ == '__main__':
     city = "London"
     temperature = get_temperature(api_key, city)
     print(f"The current temperature in {city} is {temperature}")
+
+def get_weather(location):
+    api_key = open("api_key.txt").read().strip()
+    url = f"http://api.openweathermap.org/data/2.5/weather?q={location}&appid={api_key}"
+    response = requests.get(url)
+    return response.json()
