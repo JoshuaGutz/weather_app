@@ -1,23 +1,22 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Weather App</title>
-  <style>
-    #weather {
-      font-size: 36px;
-      text-align: center;
-      margin-top: 50px;
-    }
-  </style>
-</head>
-<body>
-  <div id="weather">
-  {% if weather.error %}
-    {{ weather.error }}
-  {% else %}
-    <!-- Your code to display the weather data -->
-    The current temperature in {{ location }} is {{ weather["main"]["temp"] }}&#8451;
-  {% endif %}
-  </div>
-</body>
+  <head>
+    <title>Weather Information</title>
+  </head>
+  <body>
+    <h1>Enter Location:</h1>
+    <form action="/weather" method="post">
+      <input type="text" name="location">
+      <input type="submit" value="Submit">
+    </form>
+    {% if weather %}
+    <h1>Weather in {{ location }}</h1>
+    <p>Temperature: {{ weather.main.temp }}</p>
+    <p>Humidity: {{ weather.main.humidity }}</p>
+    <p>Weather: {{ weather.weather[0].description }}</p>
+    {% else %}
+    <h1>Sorry, no data available at this time</h1>
+    {% endif %}
+  </body>
 </html>
+
