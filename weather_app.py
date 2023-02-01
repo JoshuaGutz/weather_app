@@ -2,7 +2,7 @@ import os
 import requests
 
 def get_temperature(api_key, city):
-    url = f"http://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}"
+    url = f"http://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}&units=imperial"
     response = requests.get(url)
     if response.status_code == 200:
         data = response.json()
@@ -24,6 +24,10 @@ if __name__ == '__main__':
 
 def get_weather(location):
     api_key = open("api_key.txt").read().strip()
-    url = f"http://api.openweathermap.org/data/2.5/weather?q={location}&appid={api_key}"
-    response = requests.get(url)
-    return response.json()
+    url = f"http://api.openweathermap.org/data/2.5/weather?q={location}&appid={api_key}&units=imperial"
+    try:
+        response = requests.get(url)
+        response.raise_for_status()
+        return response.json()
+    except requests.exceptions.RequestException as e:
+        return {"error": "Sorry, no data available at this time"}

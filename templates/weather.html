@@ -12,7 +12,12 @@
 </head>
 <body>
   <div id="weather">
+  {% if weather.error %}
+    {{ weather.error }}
+  {% else %}
+    <!-- Your code to display the weather data -->
     The current temperature in {{ location }} is {{ weather["main"]["temp"] }}&#8451;
+  {% endif %}
   </div>
 </body>
 </html>

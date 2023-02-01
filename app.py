@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    location = "London,UK"
+    location = "SanAntonio,TX"
     weather = weather_app.get_weather(location)
     return render_template("weather.html", location=location, weather=weather)
 
